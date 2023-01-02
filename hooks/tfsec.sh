@@ -4,7 +4,7 @@ set -eo pipefail
 
 echo "========= START SCRIPT ==========="
 echo "$@"
-echo "======== end args ==========="
+echo "======== end args ================"
 
 directories=()
 for arg in "$@"; do
@@ -22,6 +22,8 @@ done
 uniq_dirs=($(printf "%s\n" "${directories[@]}" | sort -u))
 
 echo "========= START SCAN ==========="
+echo "${uniq_dirs[@]}"
+echo "======== end dirs =============="
 
 for d in "${uniq_dirs[@]}"; do
   echo "RUN ON DIR: $d"
