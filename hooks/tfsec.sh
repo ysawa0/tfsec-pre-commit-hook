@@ -5,11 +5,12 @@ set -e
 export PATH=$PATH:/usr/local/bin
 
 directories=()
-for file in "$@"; do
-  if [ -d "$file" ]; then
-    directories+=("$file")
+for arg in "$@"; do
+  echo "analyze $arg"
+  if [ -d "$arg" ]; then
+    directories+=("$arg")
   else
-    directories+=("$(dirname "$file")")
+    directories+=("$(dirname "$arg")")
   fi
 done
 
@@ -19,6 +20,7 @@ unique_directories=("$unique_directories")
 echo "========= START SCAN ==========="
 
 for d in "${unique_directories[@]}"; do
+  echo "RUN ON DIR: $d"
   if [ "$d" = "." ]; then
     continue
   fi
