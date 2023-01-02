@@ -4,6 +4,9 @@ set -e
 
 export PATH=$PATH:/usr/local/bin
 
+echo "========= START SCRIPT ==========="
+echo "$@"
+
 directories=()
 for arg in "$@"; do
   echo "analyze $arg"
