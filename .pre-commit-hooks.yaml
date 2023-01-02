@@ -6,3 +6,4 @@
   language: script
   files: \.tf$
   exclude: \.+.terraform\/.*$
+  args: ["--concise-output"]
