@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
 
-set -e
+set -eo pipefail
 
-readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
-echo "========= START SCRIPT =========== $SCRIPT_DIR"
+echo "========= START SCRIPT ==========="
 echo "$@"
-echo "======== end args ==="
-# echo "$SCRIPT_DIR"
+echo "======== end args ==========="
 
 directories=()
 for arg in "$@"; do
-  # echo "analyze $arg"
   if [ -d "$arg" ]; then
     directories+=("$arg")
   else
@@ -18,12 +15,15 @@ for arg in "$@"; do
   fi
 done
 
-unique_directories=$(printf "%s\n" "${directories[@]}" | sort -u)
-unique_directories=("$unique_directories")
+# mapfile -t uniq_dirs < <(printf "%s\n" "${directories[@]}" | sort -u)
+# read -a uniq_dirs = $(printf "%s\n" "${directories[@]}" | sort -u)
+# uniq_dirs=()
+# printf "%s\n" "${directories[@]}" | sort -u | while IFS="" read -r line; do uniq_dirs+=("$line"); done
+uniq_dirs=($(printf "%s\n" "${directories[@]}" | sort -u))
 
 echo "========= START SCAN ==========="
 
-for d in "${unique_directories[@]}"; do
+for d in "${uniq_dirs[@]}"; do
   echo "RUN ON DIR: $d"
   echo "======="
   if [ "$d" = "." ]; then

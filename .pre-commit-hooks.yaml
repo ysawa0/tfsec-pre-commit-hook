@@ -1,6 +1,7 @@
 - id: tfsec
   name: tfsec
   description: Security linter for Terraform source code
+  require_serial: true
   entry: hooks/tfsec.sh
   language: script
   files: \.tf$
