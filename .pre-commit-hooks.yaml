@@ -1,0 +1,7 @@
+- id: tfsec
+  name: tfsec
+  description: Security linter for Terraform source code
+  entry: hooks/tfsec.sh
+  language: script
+  files: \.tf$
+  exclude: \.+.terraform\/.*$
