@@ -2,8 +2,6 @@
 
 set -e
 
-export PATH=$PATH:/usr/local/bin
-
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 echo "========= START SCRIPT =========== $SCRIPT_DIR"
 # echo "$@"
@@ -27,6 +25,7 @@ echo "========= START SCAN ==========="
 for d in "${unique_directories[@]}"; do
   echo "RUN ON DIR: $d"
   if [ "$d" = "." ]; then
+    echo "RUN ON DIR SKIP: $d"
     continue
   fi
   tfsec "$d"
