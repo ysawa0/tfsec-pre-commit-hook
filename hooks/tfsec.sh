@@ -4,12 +4,14 @@ set -e
 
 export PATH=$PATH:/usr/local/bin
 
-echo "========= START SCRIPT ==========="
-echo "$@"
+readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+echo "========= START SCRIPT =========== $SCRIPT_DIR"
+# echo "$@"
+# echo "$SCRIPT_DIR"
 
 directories=()
 for arg in "$@"; do
-  echo "analyze $arg"
+  # echo "analyze $arg"
   if [ -d "$arg" ]; then
     directories+=("$arg")
   else
